@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('user/store','App\Http\Controllers\Api\ApiController@store');
+
+Route::get('user/get/{flag}','App\Http\Controllers\Api\ApiController@index');

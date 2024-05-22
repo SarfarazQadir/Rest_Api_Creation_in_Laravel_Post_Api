@@ -8,15 +8,41 @@ use App\MOdels\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($flag)
     {
-        //
+        $query = User::select('email','name');
+        if($flag == 1){
+            $query->where('status',1);
+        }else{
+            return response->json([
+                'message' => 'Invalid Paramete. It should be 1 or 0',
+                'status' => 0
+            ],400);
+        }
+
+        $users = $query->get();
+        if(count($users) > 0){
+            $response = [
+                'message' => count($users)  . 'Users Found',
+                'status' => 'success',
+                'data' => $users,
+            ];
+        }else{
+            $response = [
+                'message' => count($users) . 'Users Not Found',
+                'status' => 0,
+            ];
+        }
+        return response()->json($response, 200);
+        // return response()->json($users);
+        // p($users);
     }
 
     /**
