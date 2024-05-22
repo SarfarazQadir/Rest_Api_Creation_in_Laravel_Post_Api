@@ -15,10 +15,14 @@ class ApiController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function index1(){
+        
+    }
     public function index($flag)
     {
         $query = User::select('email','name');
         if($flag == 1){
+            // show only active users
             $query->where('status',1);
         }else{
             return response->json([
