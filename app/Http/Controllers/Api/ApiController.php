@@ -15,9 +15,7 @@ class ApiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index1(){
-        
-    }
+   
     public function index($flag)
     {
         $query = User::select('email','name');
