@@ -129,6 +129,7 @@ class ApiController extends Controller
                 'message' => 'User not found successfully',
                 'status' => 0
             ]; 
+            $respocode = 404;
             }else{
                DB::beginTransaction();
                try{
@@ -138,11 +139,18 @@ class ApiController extends Controller
                     'message' => 'User Delete Successful!',
                     'status' => 1
                     ];
+                    $respocode = 200;
                 }
                 catch(\Exception $e){
                     DB::rollBack();
+                    $response = [
+                        'message' => 'Internal Server Error',
+                        'status' => 0
+                        ];
+                        $respocode = 500;
                 }
             
             }
-}
+            return response()->json($response, $respocode);
+    }
 }
