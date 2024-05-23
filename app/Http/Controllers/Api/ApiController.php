@@ -24,7 +24,7 @@ class ApiController extends Controller
             $query->where('status',1);
         }else{
             return response->json([
-                'message' => 'Invalid Paramete. It should be 1 or 0',
+                'message' => 'Invalid Paramete, It should be 1 or 0',
                 'status' => 0
             ],400);
         }
@@ -123,6 +123,25 @@ class ApiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-    }
+        $user = User::find();
+        if(is_null($user)){
+            $response = [
+                'message' => 'User not found successfully',
+                'status' => 0
+            ]; 
+            }else{
+               DB::beginTransaction();
+               try{
+                    $user->delete();
+                    DB::commit();
+                    $response = [
+                    'message' => 'User Delete Successful!',
+                    'status' => 1
+                    ];
+                }
+                catch(\Exception $e){
+                    DB::rollBack();
+                }
+            
+            }
 }

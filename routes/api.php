@@ -33,3 +33,5 @@ use App\Http\Controllers\ApiController;
 Route::post('user/store','App\Http\Controllers\Api\ApiController@store');
 
 Route::get('user/get/{flag}','App\Http\Controllers\Api\ApiController@index');
+
+Route::delete('user/delete', 'App\Http\Controllers\Api\ApiController@destroy');
