@@ -123,10 +123,10 @@ class ApiController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::find();
+        $user = User::find($id);
         if(is_null($user)){
             $response = [
-                'message' => 'User not found successfully',
+                'message' => 'User isnot  exist ',
                 'status' => 0
             ]; 
             $respocode = 404;
