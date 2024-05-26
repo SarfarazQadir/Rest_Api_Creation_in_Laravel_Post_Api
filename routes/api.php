@@ -35,3 +35,9 @@ Route::post('user/store','App\Http\Controllers\Api\ApiController@store');
 Route::get('user/get/{flag}','App\Http\Controllers\Api\ApiController@index');
 
 Route::delete('user/delete/{id}', 'App\Http\Controllers\Api\ApiController@destroy');
+
+Route::put('user/update/{id}', 'App\Http\Controllers\Api\ApiController@update');
+
+ Route::patch('change-password/{id}', 'App\Http\Controllers\Api\ApiController@edit');
+
+// Route::patch('user/change-password/{id}', [ApiController::class,'edit']);

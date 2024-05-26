@@ -105,17 +105,68 @@ class ApiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        if(is_null($user)){
+            return response()->json(['message' => 'User not found', 'status' => 0], 404);
+        }else{
+            if($user->password == $request['old_password']){
+                if($request['new_password'] == $request['confirm_password']){
+                    DB::beginTransaction();
+                    try{
+                        $user->password = Hash::make($request['new_password']);
+                        $user->save();
+                        DB::commit();
+                        }
+                        catch(\Exception $err){
+                            $user = null;
+                            DB::rollBack();
+                        } 
+                        if(is_null($user)){
+                            return response()->json(['message' => 'Internal server error', 'status' => 0, 'error_message' => $err->getmessage()], 500);
+                        }else{
+                            return response()->json(['message' => 'Password updated successfully', 'status' => 1], 200);
+                        }
+                }else{
+                    return response()->json(['message' => 'New password and Confirm Password Does not match', 'status' => 0], 400);   
+                }
+            }else{
+                return response()->json(['message' => 'Old password is not correct', 'status' => 0], 400);
+            }
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        if(is_null($user)){
+            return response()->json(['message' => 'User not found', 'status' => 0], 404);
+        }
+        else{
+            DB::beginTransaction();
+            try{
+                $user->name = $request['name'];
+                $user->email = $request['email'];
+                $user->conatct = $request['conatct'];
+                $user->pincode = $request['pincode'];
+                $user->address = $request['address'];
+                $user->save();
+                DB::commit();
+            }
+            catch(\Exception $err){
+                DB::rollBack();
+                $user = null;
+            }
+            if(is_null($user)){
+                return response()->json(['message' => 'Internal server error', 'status' => 0, 'error_message' => $err->getmessage()], 500);
+            }else{
+                return response()->json(['message' => 'User updated successfully', 'status' => 1], 200);
+            }
+        }
     }
 
     /**
