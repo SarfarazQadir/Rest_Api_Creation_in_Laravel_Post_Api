@@ -110,6 +110,7 @@ class ApiController extends Controller
     public function edit(Request $request, $id)
     {
         $user = User::find($id);
+        // checking user null or not
         if(is_null($user)){
             return response()->json(['message' => 'User not found', 'status' => 0], 404);
         }else{
