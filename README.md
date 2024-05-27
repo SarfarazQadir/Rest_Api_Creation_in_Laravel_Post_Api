@@ -4,6 +4,7 @@
 ![image](https://github.com/SarfarazQadir/Rest_Api_Creation_in_Laravel_Post_Api/assets/144503703/9cb4191c-d921-4fdf-a94e-9a166d8da499)
 ![image](https://github.com/SarfarazQadir/Rest_Api_Creation_in_Laravel_Post_Api/assets/144503703/d4b7441a-7eea-43e5-99bc-f59a5781f603)
 ![image](https://github.com/SarfarazQadir/Rest_Api_Creation_in_Laravel_Post_Api/assets/144503703/d841abd4-51c0-478b-b1d2-c28e783e9c1f)
+![image](https://github.com/SarfarazQadir/Rest_Api_Creation_in_Laravel_Post_Api/assets/144503703/d841abd4-51c0-478b-b1d2-c28e783e9c1f)
 ![image](https://github.com/SarfarazQadir/Rest_Api_Creation_in_Laravel_Post_Api/assets/144503703/2969cc9a-8481-4afb-97bd-ee0e8a06d65b)
 
 
